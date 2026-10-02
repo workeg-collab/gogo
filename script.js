@@ -13,6 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
    1. COUNTDOWN TIMER
    Target: October 13, 2026 at 19:00:00 Cairo Time (16:00:00 UTC)
    ------------------------------------------------------------------- */
+function toArabicDigits(num) {
+  const arabicDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+  return String(num).replace(/\d/g, (d) => arabicDigits[d]);
+}
+
 function initCountdown() {
   const targetDate = new Date('2026-10-13T16:00:00Z').getTime();
 
@@ -21,10 +26,10 @@ function initCountdown() {
     const distance = targetDate - now;
 
     if (distance < 0) {
-      document.getElementById('days').textContent = '00';
-      document.getElementById('hours').textContent = '00';
-      document.getElementById('minutes').textContent = '00';
-      document.getElementById('seconds').textContent = '00';
+      document.getElementById('days').textContent = toArabicDigits('00');
+      document.getElementById('hours').textContent = toArabicDigits('00');
+      document.getElementById('minutes').textContent = toArabicDigits('00');
+      document.getElementById('seconds').textContent = toArabicDigits('00');
       return;
     }
 
@@ -33,12 +38,12 @@ function initCountdown() {
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    const pad = (n) => (n < 10 ? '0' + n : n);
+    const pad = (n) => (n < 10 ? '0' + n : String(n));
 
-    document.getElementById('days').textContent = days;
-    document.getElementById('hours').textContent = pad(hours);
-    document.getElementById('minutes').textContent = pad(minutes);
-    document.getElementById('seconds').textContent = pad(seconds);
+    document.getElementById('days').textContent = toArabicDigits(days);
+    document.getElementById('hours').textContent = toArabicDigits(pad(hours));
+    document.getElementById('minutes').textContent = toArabicDigits(pad(minutes));
+    document.getElementById('seconds').textContent = toArabicDigits(pad(seconds));
   }
 
   update();
