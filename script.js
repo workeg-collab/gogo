@@ -51,77 +51,54 @@ function initCountdown() {
 }
 
 /* -------------------------------------------------------------------
-   2. AUDIO PLAYER WITH FLOATING GLASS BUTTON
+   2. CONTINUOUS BACKGROUND AUDIO PLAYER (AUTOPLAY & CONTINUOUS PLAYBACK)
    ------------------------------------------------------------------- */
 function initAudioPlayer() {
   const audio = document.getElementById('weddingAudio');
-  const toggleBtn = document.getElementById('audioToggle');
-  const soundWave = document.getElementById('soundWave');
-  const musicIcon = document.getElementById('musicIcon');
-  const audioText = document.getElementById('audioText');
+  if (!audio) return;
 
-  let isPlaying = false;
+  audio.loop = true;
 
-  function setPlayingState() {
-    isPlaying = true;
-    soundWave.classList.add('playing');
-    musicIcon.className = 'fa-solid fa-pause';
-    audioText.textContent = 'إيقاف مؤقت';
-  }
-
-  function setPausedState() {
-    isPlaying = false;
-    soundWave.classList.remove('playing');
-    musicIcon.className = 'fa-solid fa-play';
-    audioText.textContent = 'تشغيل الموسيقى';
-  }
-
-  audio.addEventListener('play', setPlayingState);
-  audio.addEventListener('pause', setPausedState);
-
-  function startAudio() {
+  function tryPlay() {
     const playPromise = audio.play();
     if (playPromise !== undefined) {
       playPromise.then(() => {
-        setPlayingState();
         removeAutoplayTriggers();
       }).catch(() => {
-        // Autoplay policy prevented playback, awaiting interaction
+        // Browser autoplay policy requires user interaction first
       });
     }
   }
 
-  function toggleAudio() {
-    if (audio.paused) {
-      audio.play().then(setPlayingState).catch(() => {});
-    } else {
-      audio.pause();
-      setPausedState();
-    }
-  }
+  // Attempt instant playback on page load
+  tryPlay();
 
-  toggleBtn.addEventListener('click', toggleAudio);
-
-  // Instant trigger on page load
-  startAudio();
-
-  // Multi-event triggers for instant autoplay upon any interaction
+  // Multi-event triggers to immediately start audio upon any user interaction
   const triggerEvents = ['click', 'touchstart', 'touchend', 'scroll', 'pointerdown', 'keydown', 'wheel'];
 
-  function handleFirstInteraction() {
-    startAudio();
+  function handleInteraction() {
+    if (audio.paused) {
+      tryPlay();
+    }
   }
 
   function removeAutoplayTriggers() {
     triggerEvents.forEach((ev) => {
-      window.removeEventListener(ev, handleFirstInteraction);
-      document.removeEventListener(ev, handleFirstInteraction);
+      window.removeEventListener(ev, handleInteraction);
+      document.removeEventListener(ev, handleInteraction);
     });
   }
 
   triggerEvents.forEach((ev) => {
-    window.addEventListener(ev, handleFirstInteraction, { passive: true });
-    document.addEventListener(ev, handleFirstInteraction, { passive: true });
+    window.addEventListener(ev, handleInteraction, { passive: true });
+    document.addEventListener(ev, handleInteraction, { passive: true });
+  });
+
+  // Ensure audio resumes if user switches back to the tab
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && audio.paused) {
+      tryPlay();
+    }
   });
 }
 

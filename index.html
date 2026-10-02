@@ -25,19 +25,10 @@
 </head>
 <body>
 
-  <!-- Floating Audio Player -->
-  <div class="audio-control-container" id="audioContainer">
-    <button class="glass-btn audio-btn" id="audioToggle" aria-label="تشغيل / إيقاف الموسيقى">
-      <div class="sound-wave" id="soundWave">
-        <span></span><span></span><span></span><span></span>
-      </div>
-      <i class="fa-solid fa-music" id="musicIcon"></i>
-      <span class="audio-text" id="audioText">تشغيل الموسيقى</span>
-    </button>
-    <audio id="weddingAudio" loop preload="auto" autoplay playsinline>
-      <source src="assets/music.mp3" type="audio/mp3">
-    </audio>
-  </div>
+  <!-- Continuous Background Audio (Always Playing) -->
+  <audio id="weddingAudio" loop preload="auto" autoplay playsinline>
+    <source src="assets/music.mp3" type="audio/mp3">
+  </audio>
 
   <!-- Background Animated Canvas (Sparkles / Fireflies) -->
   <canvas id="ambientCanvas"></canvas>
