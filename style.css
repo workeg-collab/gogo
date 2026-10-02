@@ -398,29 +398,52 @@ body {
 
 .scroll-down-btn {
   display: inline-flex;
-  flex-direction: column;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  gap: 10px;
   color: var(--gold-light);
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 600;
+  padding: 8px 18px;
+  background: rgba(223, 177, 91, 0.1);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(223, 177, 91, 0.35);
+  border-radius: 40px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
   transition: var(--transition-smooth);
+  margin-top: 8px;
 }
 
 .scroll-down-btn:hover {
+  background: rgba(223, 177, 91, 0.2);
+  border-color: var(--gold-primary);
   color: #fff;
-  transform: translateY(3px);
+  transform: translateY(2px);
+  box-shadow: 0 8px 25px rgba(223, 177, 91, 0.35);
+}
+
+.scroll-arrow-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(223, 177, 91, 0.22);
+  border: 1px solid rgba(223, 177, 91, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--gold-light);
 }
 
 .bounce {
-  animation: bounceDown 2s infinite;
+  animation: bounceDown 1.8s infinite ease-in-out;
 }
 
 @keyframes bounceDown {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(6px); }
-  60% { transform: translateY(3px); }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(3px); }
 }
 
 /* Section Header Component */
@@ -912,10 +935,10 @@ body {
    =================================================================== */
 
 @media (max-width: 768px) {
-  /* Page Layout & Safe Areas */
+  /* Page Container & Spacing */
   .page-container {
-    padding: 20px 14px calc(55px + env(safe-area-inset-bottom, 20px)) 14px;
-    gap: 22px;
+    padding: 16px 12px calc(50px + env(safe-area-inset-bottom, 20px)) 12px;
+    gap: 14px;
     width: 100%;
     max-width: 100vw;
     box-sizing: border-box;
@@ -923,14 +946,15 @@ body {
   
   /* Floating Audio Button */
   .audio-control-container {
-    top: 14px;
-    left: 14px;
+    top: 12px;
+    left: 12px;
   }
   
   .audio-btn {
-    padding: 8px 12px;
-    font-size: 0.82rem;
-    min-height: 42px;
+    padding: 6px 10px;
+    font-size: 0.78rem;
+    min-height: 36px;
+    gap: 6px;
   }
   
   .audio-btn .audio-text {
@@ -939,229 +963,311 @@ body {
 
   /* Glass Cards */
   .glass-card {
-    padding: 34px 18px;
-    border-radius: 22px;
+    padding: 22px 14px;
+    border-radius: 18px;
+    border-color: rgba(223, 177, 91, 0.24);
   }
 
   /* Hero Section */
   .hero-section {
-    padding-top: 42px;
-    padding-bottom: 35px;
+    padding-top: 30px;
+    padding-bottom: 22px;
   }
 
   .bismillah-text {
-    font-size: clamp(1.15rem, 4.5vw, 1.45rem);
+    font-size: 1.15rem;
+    margin-bottom: 6px;
   }
 
   .quran-verse {
-    font-size: clamp(0.92rem, 3.5vw, 1.1rem);
-    line-height: 1.85;
-    margin-bottom: 22px;
-    padding: 0 4px;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    margin-bottom: 14px;
+    padding: 0;
   }
 
   .rings-wrapper {
-    margin: 10px auto 16px auto;
+    margin: 6px auto 12px auto;
   }
 
   .wedding-rings-img {
-    width: clamp(65px, 18vw, 85px);
+    width: 52px;
   }
 
   .invitation-tagline h2 {
-    font-size: clamp(1.1rem, 4.2vw, 1.45rem);
+    font-size: 1.05rem;
+  }
+
+  .gold-gradient-text {
+    font-size: 0.82rem;
+    letter-spacing: 2px;
+    margin-bottom: 4px;
   }
 
   .names-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: clamp(8px, 2.8vw, 20px);
-    margin: 18px 0 10px 0;
+    gap: 8px;
+    margin: 10px 0 6px 0;
     width: 100%;
   }
 
   .groom-name, .bride-name {
-    font-size: clamp(2.3rem, 10.5vw, 3.4rem);
+    font-size: clamp(2rem, 8.8vw, 2.7rem);
     line-height: 1.15;
     white-space: nowrap;
   }
 
   .and-symbol {
-    font-size: clamp(2rem, 8vw, 2.9rem);
+    font-size: 1.7rem;
     line-height: 1;
   }
 
   .names-latin {
-    font-size: clamp(1rem, 3.8vw, 1.2rem);
-    letter-spacing: 2px;
-    margin-bottom: 20px;
+    font-size: 0.95rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 14px;
   }
 
   .golden-line-img {
-    width: clamp(180px, 65vw, 240px);
+    width: 170px;
   }
 
+  .golden-separator {
+    margin: 12px auto;
+  }
+
+  /* Hero Date Badge */
   .hero-date-badge {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding: 14px 16px;
-    gap: 14px;
-    margin: 16px auto 22px auto;
+    padding: 10px 14px;
+    gap: 12px;
+    margin: 10px auto 14px auto;
     width: 100%;
-    max-width: 360px;
+    max-width: 320px;
+    border-radius: 14px;
   }
 
   .date-icon {
-    font-size: 1.8rem;
+    font-size: 1.35rem;
   }
 
   .day-name {
-    font-size: 1.05rem;
+    font-size: 0.92rem;
   }
 
   .date-number {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
   }
 
   .time-range {
-    font-size: 0.86rem;
+    font-size: 0.78rem;
+  }
+
+  /* Scroll Down Button */
+  .scroll-down-btn {
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    gap: 6px;
+    margin-top: 4px;
+  }
+
+  .scroll-arrow-circle {
+    width: 20px;
+    height: 20px;
+    font-size: 0.65rem;
+  }
+
+  /* Section Header Component */
+  .section-header {
+    margin-bottom: 16px;
+  }
+
+  .gold-icon {
+    font-size: 1.25rem;
+    margin-bottom: 4px;
+  }
+
+  .section-title {
+    font-size: 1.35rem;
+    margin-bottom: 3px;
+  }
+
+  .section-subtitle {
+    font-size: 0.82rem;
   }
 
   /* Countdown Grid */
   .countdown-grid {
     grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
+    gap: 6px;
     width: 100%;
   }
 
   .countdown-card {
-    padding: 14px 4px;
-    border-radius: 16px;
+    padding: 9px 3px;
+    border-radius: 12px;
     min-width: 0;
   }
 
   .countdown-number {
-    font-size: clamp(1.4rem, 6.2vw, 2.1rem);
+    font-size: 1.35rem;
+    line-height: 1;
   }
 
   .countdown-label {
-    font-size: clamp(0.75rem, 3vw, 0.9rem);
-    margin-top: 4px;
+    font-size: 0.7rem;
+    margin-top: 2px;
   }
 
-  /* Romantic Quote */
+  /* Romantic Quote Section */
   .quote-section {
-    padding: 30px 16px;
+    padding: 20px 14px;
+  }
+
+  .quote-mark {
+    font-size: 1.3rem;
+    margin-bottom: 4px;
   }
 
   .quote-text-ar {
-    font-size: clamp(1.08rem, 4vw, 1.35rem);
-    line-height: 1.9;
-    margin-bottom: 14px;
+    font-size: 1.02rem;
+    line-height: 1.8;
+    margin-bottom: 8px;
   }
 
   .quote-text-en {
-    font-size: clamp(0.85rem, 3.2vw, 0.95rem);
-    margin-bottom: 20px;
+    font-size: 0.78rem;
+    margin-bottom: 12px;
   }
 
   .couple-cards-grid {
     grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 8px;
     width: 100%;
+    margin-top: 14px;
   }
 
   .couple-card {
-    padding: 20px 16px;
-    border-radius: 18px;
+    padding: 12px 10px;
+    border-radius: 12px;
+  }
+
+  .role-badge {
+    font-size: 0.68rem;
+    padding: 2px 8px;
+    margin-bottom: 4px;
   }
 
   .role-name {
-    font-size: 1.75rem;
+    font-size: 1.35rem;
+    margin-bottom: 2px;
   }
 
-  /* Photo Gallery (2x2 Compact Grid on Mobile) */
+  .role-desc {
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+
+  /* Photo Gallery (2x2 Compact Grid) */
   .polaroid-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    gap: 8px;
   }
 
   .polaroid-card {
-    padding: 8px;
-    border-radius: 14px;
+    padding: 6px;
+    border-radius: 12px;
   }
 
   .polaroid-inner {
-    border-radius: 10px;
+    border-radius: 8px;
     aspect-ratio: 1 / 1;
   }
 
   .polaroid-caption {
-    padding: 8px 10px;
-    font-size: 0.8rem;
+    padding: 6px 8px;
+    font-size: 0.72rem;
   }
 
   /* Venue & Location Section */
   .venue-info-box {
-    padding: 20px 16px;
-    border-radius: 20px;
+    padding: 15px 12px;
+    border-radius: 14px;
+    margin-bottom: 12px;
   }
 
   .venue-main {
     flex-direction: column;
     text-align: center;
-    gap: 14px;
-    margin-bottom: 20px;
+    gap: 8px;
+    margin-bottom: 12px;
   }
 
   .venue-icon-wrapper {
-    width: 60px;
-    height: 60px;
-    font-size: 1.6rem;
+    width: 44px;
+    height: 44px;
+    font-size: 1.15rem;
     margin: 0 auto;
   }
 
   .venue-hall-name {
-    font-size: clamp(1.35rem, 5.5vw, 1.65rem);
+    font-size: 1.25rem;
+    margin-bottom: 2px;
   }
 
   .venue-complex-name {
-    font-size: clamp(0.92rem, 3.8vw, 1.05rem);
+    font-size: 0.85rem;
     justify-content: center;
+    margin-bottom: 2px;
   }
 
   .venue-address {
-    font-size: clamp(0.85rem, 3.5vw, 0.95rem);
+    font-size: 0.78rem;
     justify-content: center;
   }
 
   .venue-actions-grid {
     grid-template-columns: 1fr;
-    gap: 10px;
+    gap: 8px;
     width: 100%;
   }
 
   .action-btn {
     width: 100%;
-    min-height: 48px;
-    padding: 13px 18px;
-    font-size: 0.92rem;
-    border-radius: 14px;
+    min-height: 40px;
+    padding: 9px 12px;
+    font-size: 0.84rem;
+    border-radius: 10px;
+    gap: 6px;
     box-sizing: border-box;
   }
 
+  .action-btn i {
+    font-size: 0.88rem;
+  }
+
   .map-embed-wrapper iframe {
-    height: 250px;
+    height: 200px;
+    border-radius: 12px;
   }
 
   /* Share Section */
+  .share-section {
+    padding: 22px 14px;
+  }
+
+  .share-content h3 {
+    font-size: 1.25rem;
+    margin-bottom: 4px;
+  }
+
+  .share-content p {
+    font-size: 0.82rem;
+    margin-bottom: 14px;
+  }
+
   .share-buttons {
     flex-direction: column;
     width: 100%;
-    gap: 10px;
+    gap: 8px;
   }
 
   .share-buttons .action-btn {
@@ -1169,12 +1275,28 @@ body {
   }
 
   /* Footer */
+  .closing-footer {
+    padding: 20px 14px;
+    border-radius: 18px;
+  }
+
+  .closing-message {
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+  }
+
   .closing-names {
-    font-size: clamp(1.9rem, 7.5vw, 2.4rem);
+    font-size: 1.65rem;
+    margin-bottom: 4px;
+  }
+
+  .closing-note {
+    font-size: 0.82rem;
+    margin-bottom: 12px;
   }
 
   .flower-bottom-img {
-    width: clamp(160px, 55vw, 220px);
+    width: 140px;
   }
 
   /* Lightbox */
@@ -1189,79 +1311,80 @@ body {
 
 @media (max-width: 480px) {
   .page-container {
-    padding: 14px 10px calc(50px + env(safe-area-inset-bottom, 20px)) 10px;
-    gap: 16px;
+    padding: 12px 8px calc(45px + env(safe-area-inset-bottom, 20px)) 8px;
+    gap: 12px;
   }
 
   .glass-card {
-    padding: 28px 14px;
-    border-radius: 18px;
+    padding: 18px 12px;
+    border-radius: 16px;
   }
 
   .names-container {
-    gap: 6px;
+    gap: 4px;
   }
 
   .groom-name, .bride-name {
-    font-size: clamp(1.95rem, 9.8vw, 2.5rem);
+    font-size: clamp(1.85rem, 8.5vw, 2.3rem);
   }
 
   .and-symbol {
-    font-size: clamp(1.6rem, 7.5vw, 2.2rem);
-  }
-
-  .countdown-grid {
-    gap: 6px;
-  }
-
-  .countdown-card {
-    padding: 10px 2px;
-    border-radius: 12px;
-  }
-
-  .countdown-number {
-    font-size: clamp(1.25rem, 5.8vw, 1.6rem);
-  }
-
-  .countdown-label {
-    font-size: 0.72rem;
-  }
-
-  .hero-date-badge {
-    padding: 12px 10px;
-    gap: 10px;
-  }
-
-  .date-icon {
     font-size: 1.5rem;
   }
 
+  .countdown-grid {
+    gap: 4px;
+  }
+
+  .countdown-card {
+    padding: 8px 2px;
+    border-radius: 10px;
+  }
+
+  .countdown-number {
+    font-size: 1.2rem;
+  }
+
+  .countdown-label {
+    font-size: 0.65rem;
+  }
+
+  .hero-date-badge {
+    padding: 8px 10px;
+    gap: 8px;
+    max-width: 290px;
+  }
+
+  .date-icon {
+    font-size: 1.2rem;
+  }
+
   .date-number {
-    font-size: 1.15rem;
+    font-size: 1rem;
   }
 
   .time-range {
-    font-size: 0.8rem;
+    font-size: 0.72rem;
   }
 
   .polaroid-grid {
-    gap: 8px;
+    gap: 6px;
   }
 
   .polaroid-card {
-    padding: 6px;
+    padding: 5px;
   }
 
   .polaroid-caption {
-    font-size: 0.75rem;
-    padding: 6px 8px;
+    font-size: 0.68rem;
+    padding: 4px 6px;
   }
 
   .venue-info-box {
-    padding: 16px 12px;
+    padding: 12px 10px;
   }
 
   .map-embed-wrapper iframe {
-    height: 220px;
+    height: 180px;
   }
 }
