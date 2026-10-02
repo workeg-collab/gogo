@@ -592,9 +592,22 @@ body {
 
 .role-name {
   font-family: var(--font-arabic-title);
-  font-size: 2rem;
+  font-size: 2.1rem;
+  font-weight: 700;
   color: var(--gold-light);
-  margin-bottom: 8px;
+  margin-bottom: 2px;
+  line-height: 1.2;
+}
+
+.father-name {
+  font-family: var(--font-arabic-title);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--gold-primary);
+  margin-bottom: 10px;
+  letter-spacing: normal;
+  opacity: 0.95;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .role-desc {
@@ -1167,8 +1180,13 @@ body {
   }
 
   .role-name {
-    font-size: 1.35rem;
+    font-size: 1.45rem;
     margin-bottom: 2px;
+  }
+
+  .father-name {
+    font-size: 1.02rem;
+    margin-bottom: 5px;
   }
 
   .role-desc {
